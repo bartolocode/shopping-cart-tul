@@ -91,6 +91,7 @@ export class CartService {
    */
   deleteCart(): void {
     localStorage.removeItem('shoppingCart');
+    this.itemsShopingCart = [];
   }
   /**
    * Metodo para guardar una orden

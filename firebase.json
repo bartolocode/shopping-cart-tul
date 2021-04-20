@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "dist/shopping-cart-tul",
     "ignore": [
       "firebase.json",
       "**/.*",

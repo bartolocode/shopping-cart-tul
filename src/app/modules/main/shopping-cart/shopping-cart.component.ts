@@ -56,7 +56,6 @@ export class ShoppingCartComponent extends BaseComponent implements OnInit {
         this.valueCart.subTotal + this.valueCart.iva + this.valueCart.shipping
       );
     }
-    console.log(this.valueCart);
   }
 
   /**
@@ -105,10 +104,10 @@ export class ShoppingCartComponent extends BaseComponent implements OnInit {
             nzTitle: 'Felicidades',
             nzContent: `Se a creado la orden de compra # ${order.numberOrder}, pronto estaras disfrutando de tus productos`,
           });
+          this.cartSvc.deleteCart();
           setTimeout(() => {
             modal.destroy();
             this.router.navigateByUrl('/');
-            this.cartSvc.deleteCart();
           }, 3000);
         }
       );
