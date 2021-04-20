@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./styles/partials/mixins";
+@import "./styles/partials/variables";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+html,
+body {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+
+.input-text, .input-password {
+  margin: 20px 0;
+  position: relative;
+  input {
+    padding: 6px;
+  }
+  i{
+    margin: 0 4px;
+  }
+  .error-text{
+     @include flex(column, flex-start, center);
+    span{
+      color: $red;
+    }
+  }
+}
+
+.modal-button {
+  padding: 0 10px;
+}
+

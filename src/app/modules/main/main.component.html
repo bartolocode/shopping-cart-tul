@@ -1,0 +1,74 @@
+<nz-layout>
+  <nz-header>
+    <div class="logo">
+      <img src="/assets/shared/logo-tul.png" alt="" />
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal">
+      <li nz-menu-item routerLink="/">Productos</li>
+      <li nz-menu-item *ngIf="user.id" routerLink="/orders">Ordenes</li>
+      <li nz-menu-item routerLink="/cart" nz-tooltip nzTooltipTitle="Carrito">
+        <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+      </li>
+      <li
+        nz-menu-item
+        nz-tooltip
+        nzTooltipTitle="Cerrar sesión"
+        *ngIf="user.id"
+        (click)="logOut()"
+      >
+        <i nz-icon nzType="logout" nzTheme="outline"></i>
+      </li>
+      <li
+        nz-menu-item
+        nz-tooltip
+        nzTooltipTitle="Iniciar sesión"
+        *ngIf="!user.id"
+        routerLink="/login"
+      >
+        <i nz-icon nzType="login" nzTheme="outline"></i>
+      </li>
+    </ul>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content"><router-outlet></router-outlet></div>
+  </nz-content>
+  <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>
+
+<nz-modal
+  [(nzVisible)]="showModalLogOut"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>¡Vuelve pronto!</ng-template>
+
+  <ng-template #modalContent>
+    <p>Has cerrado tu sesión</p>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button
+      nz-button
+      nzType="default"
+      class="modal-button"
+      (click)="goToProducts()"
+    >
+      Ver más productos
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      class="modal-button"
+      (click)="goToLogin()"
+    >
+      Iniciar sesión
+    </button>
+  </ng-template>
+</nz-modal>
+
+
+<div class="version-mobile">
+  <p>Versión movil no disponible</p>
+</div>

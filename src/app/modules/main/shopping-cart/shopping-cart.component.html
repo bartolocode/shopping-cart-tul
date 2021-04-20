@@ -1,0 +1,98 @@
+<div class="wrapper">
+  <div class="left" *ngIf="productsShoppingCart.length">
+    <div class="header">
+      <span>PRODUCTO</span>
+      <span>CANTIDAD</span>
+      <span>VALOR</span>
+      <span>VALOR TOTAL</span>
+    </div>
+    <div class="body" *ngIf="productsShoppingCart">
+      <div class="item" *ngFor="let item of productsShoppingCart">
+        <div class="image-name">
+          <img [src]="item.image" alt="image" />
+          <span class="name"> {{ item.name }} </span>
+        </div>
+        <div class="add-delete-actions">
+          <button
+            nz-button
+            nzType="default"
+            class="round"
+            (click)="subtractItemToCart(item)"
+          >
+            <i nz-icon nzType="minus" nzTheme="outline"></i>
+          </button>
+          <span>{{ item.quantity }}</span>
+          <button
+            nz-button
+            nzType="default"
+            class="round"
+            (click)="addItemToCart(item)"
+          >
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+          </button>
+        </div>
+        <div class="sub-total">
+          <span> {{ item.price | currency: "$":"symbol":"1.0-0":"CO" }}</span>
+        </div>
+        <div class="total">
+          <span>
+            {{
+              item.price * item.quantity | currency: "$":"symbol":"1.0-0":"CO"
+            }}</span
+          >
+        </div>
+        <div class="delete">
+          <button
+            nz-button
+            nzType="danger"
+            class="round"
+            (click)="deleteItem(item)"
+          >
+            <i nz-icon nzType="delete" nzTheme="outline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right" *ngIf="productsShoppingCart.length">
+    <div class="card">
+      <div class="sub-total">
+        <span>Valores</span>
+      </div>
+      <div class="sub-total-value">
+        <span>Subtotal: </span>
+        <span>{{
+          valueCart.subTotal | currency: "$":"symbol":"1.0-0":"CO"
+        }}</span>
+      </div>
+      <div class="sub-total-value">
+        <span>Iva: </span>
+        <span>{{ valueCart.iva | currency: "$":"symbol":"1.0-0":"CO" }}</span>
+      </div>
+      <div class="shipping">
+        <span>Envio: </span>
+        <span>{{
+          valueCart.shipping | currency: "$":"symbol":"1.0-0":"CO"
+        }}</span>
+      </div>
+      <div class="total">
+        <span>Total </span>
+        <span>{{ valueCart.total | currency: "$":"symbol":"1.0-0":"CO" }}</span>
+      </div>
+      <div class="actions">
+        <button nz-button nzType="primary" (click)="pay()">Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-cart" *ngIf="!productsShoppingCart.length">
+    <div class="icon">
+      <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    </div>
+    <p>
+      Parece que tu carrito esta vacio, agrega un producto para que puedas
+      generar una orden.
+    </p>
+    <button nz-button nzType="primary" routerLink="/">Ver productos</button>
+  </div>
+</div>

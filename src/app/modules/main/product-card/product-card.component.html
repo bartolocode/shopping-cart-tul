@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <div class="image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+  <div class="name">
+    <span>{{ product.name }}</span>
+  </div>
+  <div class="description">
+    <p>{{ product.description }}</p>
+  </div>
+  <div class="price">
+    <span> {{ product.price | currency: "$":"symbol":"1.0-0":"CO" }}</span>
+  </div>
+  <button class="add-to-cart" (click)="addToCart()">Agregar al carrito</button>
+</div>

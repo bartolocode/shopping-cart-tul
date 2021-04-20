@@ -1,0 +1,22 @@
+<div class="wrapper" *ngIf="orders.length">
+  <nz-table #basicTable [nzData]="orders">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fecha de la orden</th>
+        <th>Envio</th>
+        <th>Estado</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.numberOrder }}</td>
+        <td>{{ data.createdAt }}</td>
+        <td>{{ data.shipping }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.total }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -1,0 +1,71 @@
+@import "~src/styles.scss";
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  nz-layout {
+    min-height: 100%;
+
+    nz-header {
+      padding: 0 30px;
+      @include flex(row, center, space-between);
+      .logo {
+        width: 120px;
+        margin: 14px 24px 14px 0;
+        img {
+          width: 80%;
+          max-height: 100%;
+        }
+      }
+      ul {
+        line-height: 64px;
+        li {
+          i {
+            font-size: 20px;
+            margin: 0;
+          }
+        }
+      }
+    }
+    nz-content {
+      padding: 0 50px;
+      max-width: 1440px;
+      margin: auto;
+      width: 100%;
+      .inner-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+      }
+    }
+
+    nz-footer {
+      text-align: center;
+    }
+  }
+  .version-mobile{
+    display: none;
+  }
+  @include for-size(phone-only){
+    nz-layout{
+      display: none;
+    }
+    .version-mobile{
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: $primary-blue;
+       @include flex(row, center, center);
+       p{
+         @include font-size(18px);
+         color:#fff;
+         text-align: center;
+       }
+    }
+  }
+}

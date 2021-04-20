@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <form [formGroup]="loginDataFormGroup">
+    <div class="logo">
+      <img src="/assets/shared/logo-tul.png" alt="" />
+    </div>
+    <div class="title">
+      <h1>Iniciar sesión</h1>
+    </div>
+    <div class="input-text">
+      <input
+        formControlName="email"
+        nz-input
+        placeholder="yeferson@ejemplo.com"
+      />
+      <div class="error-text" *ngIf="loginDataFormGroup.controls.email.touched">
+        <span
+          *ngFor="
+            let errorMessage of loginDataFormGroup.controls.email[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+    <div class="input-password">
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input
+          formControlName="password"
+          formCo
+          [type]="passwordVisible ? 'text' : 'password'"
+          nz-input
+          placeholder="Contraseña"
+        />
+
+      </nz-input-group>
+      <div class="error-text" *ngIf="loginDataFormGroup.controls.password.touched">
+        <span
+          *ngFor="
+            let errorMessage of loginDataFormGroup.controls.password[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+
+    <button
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      (click)="loginUser()"
+      [nzLoading]="isLoadingOne"
+    >
+      Iniciar sesión
+    </button>
+    <div class="register">
+      <span>¿No tienes una cuenta?</span>
+      <a nz-button nzType="link" routerLink="/register" nzBlock>Registrate</a>
+    </div>
+  </form>
+</div>
+
+
+
+<ng-template #suffixTemplate>
+  <i
+    nz-icon
+    [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+    (click)="passwordVisible = !passwordVisible"
+  ></i>
+</ng-template>

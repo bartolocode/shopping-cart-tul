@@ -1,0 +1,111 @@
+<div class="wrapper">
+  <form [formGroup]="registerDataFormGroup">
+    <div class="logo">
+      <img src="/assets/shared/logo-tul.png" alt="" />
+    </div>
+    <div class="title">
+      <h1>Registrate</h1>
+    </div>
+
+    <div class="input-text">
+      <input formControlName="name" nz-input placeholder="Yeferson" />
+      <div class="error-text" *ngIf="registerDataFormGroup.controls.name.touched">
+        <span
+          *ngFor="
+            let errorMessage of registerDataFormGroup.controls.name[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+    <div class="input-text">
+      <input
+        formControlName="email"
+        nz-input
+        placeholder="yeferson@ejemplo.com"
+      />
+      <div class="error-text" *ngIf="registerDataFormGroup.controls.email.touched">
+        <span
+          *ngFor="
+            let errorMessage of registerDataFormGroup.controls.email[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+    <div class="input-password">
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input
+          formControlName="password"
+          formCo
+          [type]="passwordVisible ? 'text' : 'password'"
+          nz-input
+          placeholder="Contraseña"
+        />
+
+      </nz-input-group>
+      <div class="error-text" *ngIf="registerDataFormGroup.controls.password.touched">
+        <span
+          *ngFor="
+            let errorMessage of registerDataFormGroup.controls.password[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+    <div class="input-password">
+      <nz-input-group [nzSuffix]="suffixTemplate">
+        <input
+          formControlName="comparePassword"
+          [type]="passwordVisible ? 'text' : 'password'"
+          nz-input
+          placeholder="Confirmar contraseña"
+        />
+
+      </nz-input-group>
+      <div class="error-text" *ngIf="registerDataFormGroup.controls.comparePassword.touched">
+        <span
+          *ngFor="
+            let errorMessage of registerDataFormGroup.controls.comparePassword[
+              'errorMessages'
+            ]
+          "
+        >
+          {{ errorMessage }}</span
+        >
+      </div>
+    </div>
+
+    <button
+      nz-button
+      nzType="primary"
+      (click)="register()"
+      [nzLoading]="isLoadingOne"
+      [disabled]="registerDataFormGroup.invalid"
+    >
+      Registrate
+    </button>
+    <div class="register">
+      <span>¿Ya tienes una cuenta?</span>
+      <a nz-button nzType="link" routerLink="/login" nzBlock>Inicia sesión</a>
+    </div>
+  </form>
+</div>
+
+
+<ng-template #suffixTemplate>
+  <i
+    nz-icon
+    [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+    (click)="passwordVisible = !passwordVisible"
+  ></i>
+</ng-template>
